@@ -1,11 +1,13 @@
 <h1 align="center">
-  <img alt="Logo" src="./screen.png" alt="Dashgo Template">
-</h1>
-
-<h1 align="center">
     Dashgo - NextJS + Chakra UI
 </h1>
 <p align="center">Aplicação template dashboard com NextJS + Chakra UI</p>
+
+---
+
+<h1 align="center">
+  <img alt="Logo" src="./screen.png" alt="Dashgo Template">
+</h1>
 
 ---
 
