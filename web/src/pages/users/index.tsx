@@ -12,6 +12,7 @@ import {
     Tbody,
     Td,
     Text,
+    useBreakpointValue
 } from '@chakra-ui/react';
 
 import { RiAddLine, RiPencilLine } from 'react-icons/ri';
@@ -20,6 +21,10 @@ import { Sidebar } from '../../components/Sidebar';
 import { Pagination } from '../../components/Pagination';
 
 export default function UserList() {
+    const isWideVersion = useBreakpointValue({
+        base: false,
+        lg: true,
+    });
     return (
         <Box>
             <Header />
@@ -47,7 +52,7 @@ export default function UserList() {
                                 <Th>
                                     Usuário
                                 </Th>
-                                <Th>Data de cadastro</Th>
+                                { isWideVersion && <Th>Data de cadastro</Th> }
                                 <Th width="6"></Th>
                             </Tr>
                         </Thead>
@@ -62,9 +67,7 @@ export default function UserList() {
                                         <Text fontSize="sm" color="gray.300">contato@marciodias.me</Text>
                                     </Box>
                                 </Td>
-                                <Td>
-                                    02 de Abril, 2021
-                                </Td>
+                                { isWideVersion && <Td>02 de Abril, 2021</Td>}
                                 <Td>
                                     <Button
                                         as="a"
