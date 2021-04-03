@@ -2,8 +2,8 @@ import { Icon, HStack, useColorMode, Button } from '@chakra-ui/react';
 import { 
     RiNotificationLine, 
     RiUserAddLine, 
-    RiLightbulbFlashFill,
-    RiLightbulbFlashLine
+    RiMoonFill,
+    RiSunFill
 } from 'react-icons/ri';
 
 export function NotificationsNav() {
@@ -20,8 +20,8 @@ export function NotificationsNav() {
         >
             <Button onClick={toggleColorMode} variant="unstyled">
                 {colorMode === "light" ? 
-                    <Icon as={RiLightbulbFlashLine} fontSize="20" /> : 
-                    <Icon as={RiLightbulbFlashFill} fontSize="20" />
+                    <Icon as={RiMoonFill} fontSize="20" /> : 
+                    <Icon as={RiSunFill} fontSize="20" />
                 }
             </Button>
             <Icon as={RiNotificationLine} fontSize="20" />
