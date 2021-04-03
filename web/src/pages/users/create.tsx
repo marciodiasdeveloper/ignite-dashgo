@@ -34,9 +34,14 @@ const createUserFormSchema = yup.object({
 });
 
 export default function UserCreate() {
-    const { register, handleSubmit, formState, errors } = useForm({
-        resolver: yupResolver(createUserFormSchema)
-    });
+    const {
+        register,
+        handleSubmit,
+        formState,
+        formState: { errors },
+      } = useForm<CreateUserFormData>({
+        resolver: yupResolver(createUserFormSchema),
+      });
 
     const handleCreateUser:SubmitHandler<CreateUserFormData> = async (data, event) => {
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -64,14 +69,14 @@ export default function UserCreate() {
                                 name="name"
                                 label="Nome completo"
                                 error={errors.name}
-                                ref={register} 
+                                {...register("name", { required: true })}
                             />
                             <Input
                                 name="email"
                                 type="email"
                                 label="E-mail"
                                 error={errors.email}
-                                ref={register} 
+                                {...register("email", { required: true })}
                             />
                         </SimpleGrid>
                         <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
@@ -80,14 +85,14 @@ export default function UserCreate() {
                                 type="password"
                                 label="Senha"
                                 error={errors.password}
-                                ref={register} 
+                                {...register("password", { required: true })}
                             />
                             <Input
                                 name="password_confirmation"
                                 type="password"
                                 label="Confirmação da senha"
                                 error={errors.password_confirmation}
-                                ref={register} 
+                                {...register("password_confirmation", { required: true })}
                             />
                         </SimpleGrid>
                     </VStack>

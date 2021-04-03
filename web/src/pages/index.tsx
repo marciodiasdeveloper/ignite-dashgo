@@ -15,8 +15,13 @@ const signInFormSchema = yup.object({
 });
 
 export default function SignIn() {
-  const { register, handleSubmit, formState, errors } = useForm({
-    resolver: yupResolver(signInFormSchema)
+  const {
+    register,
+    handleSubmit,
+    formState,
+    formState: { errors },
+  } = useForm<SignInFormData>({
+    resolver: yupResolver(signInFormSchema),
   });
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (data, event) => {
@@ -47,14 +52,14 @@ export default function SignIn() {
             name="email" 
             label="E-mail" 
             error={errors.email}
-            ref={register} 
+            {...register("email", { required: true })}
           />
           <Input 
             type="password" 
             name="password" 
             label="Senha" 
             error={errors.password}
-            ref={register} 
+            {...register("password", { required: true })}
           />
         </Stack>       
         <Button type="submit" mt="6" colorScheme="pink" size="lg" isLoading={formState.isSubmitting}>
