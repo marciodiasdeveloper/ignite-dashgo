@@ -10,7 +10,7 @@ type User = {
 export function makeServer() {
     const server = createServer({
         models: {
-            user: Model.extend<Partial<User>>({});
+            user: Model.extend<Partial<User>>({})
         },
 
         factories: {
@@ -28,7 +28,7 @@ export function makeServer() {
         },
 
         seeds(server) {
-            server.createList('user', 200);
+            server.createList('user', 10);
         },
 
         routes() {
