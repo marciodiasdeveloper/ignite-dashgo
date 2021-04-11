@@ -24,30 +24,10 @@ import { Header } from '../../components/Header';
 import { Sidebar } from '../../components/Sidebar';
 import { Pagination } from '../../components/Pagination';
 
-import { useQuery } from 'react-query';
+import { useUsers } from '../../services/hooks/useUsers';
 
 export default function UserList() {
-    const { data, isLoading, error } = useQuery('users', async () => {
-        const response = await fetch('http://localhost:3000/api/users');
-        const data = await response.json();
-        const users = data.users.map(user => {
-            return {
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric'
-                })
-            };
-        });
-        return users;
-    }, {
-        staleTime: 1000 * 5, // 5 segundos
-    });
-
-    console.log('data', data);
+    const { data, isLoading, isFetching, error, refetch } = useUsers();
 
     const isWideVersion = useBreakpointValue({
         base: false,
@@ -61,7 +41,10 @@ export default function UserList() {
                 <Sidebar />
                 <Box flex="1" borderRadius="8" bg="gray.800" p="8">
                     <Flex mb="8" justify="space-between" align="center">
-                        <Heading size="lg" fontWeight="normal">Usuários</Heading>
+                        <Heading size="lg" fontWeight="normal">
+                            Usuários
+                            { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" /> }
+                        </Heading>
                         <Link href="/users/create" passHref={true}>
                             <Button
                                 as="a"
