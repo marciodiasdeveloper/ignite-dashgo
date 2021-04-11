@@ -19,16 +19,16 @@ export function makeServer() {
                     return `User ${i}`
                 },
                 email() {
-
+                    return faker.internet.email().toLowerCase();
                 },
                 createdAt() {
-
+                    return faker.date.recent(10)
                 }
             })
         },
 
         seeds(server) {
-
+            server.createList('user', 200);
         },
 
         routes() {
